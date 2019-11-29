@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <!-- required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <!--import bootstrap css-->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+  <!-- import master css -->
+  <link rel="stylesheet" href="css/master.css">
+
+  <!-- link to manifest -->
+  <link rel="manifest" href="manifest.json">
+
+  <!-- webpage title -->
+  <title>Shop</title>
+</head>
+
+<body onload="loadAll()">
+  <div class="pageheight">
+  <!-- header containing the navigation bar -->
+  <header>
+    <!-- navigation bar containing a logo, title and a link to each page -->
+    <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+      <span class="navbar-brand">
+        <img src="assets/LGL_Logo.png" width="40" height="40" alt="Little Green Larder Logo">
+      </span>
+      <span class="navbar-brand">The Little Green Larder</span>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link" href="index.html">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="shop.html">Shop</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="contact.html">Contact</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Page 4</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+  </header>
+
+  <!-- (main class containg Lorem ipsum to be replaced)-->
+  <main class="container">
+    <!-- call createCards -->
+
+
+    <div class="row p-3">
+      <!-- Control buttons used to filter the shop-->
+      <div id="btnContainer">
+        <button type="button" class="btn btn-primary active" onclick="filterSelection('all')">Show all</button>
+        <button type="button" class="btn btn-primary" onclick="filterSelection('pulses')">Pulses</button>
+        <button type="button" class="btn btn-primary" onclick="filterSelection('pasta')">Pasta</button>
+        <button type="button" class="btn btn-primary" onclick="filterSelection('baking')">Baking</button>
+        <button type="button" class="btn btn-primary" onclick="filterSelection('tea')">Tea</button>
+        <button type="button" class="btn btn-primary" onclick="filterSelection('driedFruit')">Dried Fruit</button>
+        <button type="button" class="btn btn-primary" onclick="filterSelection('nuts&seeds')">Nuts & Seeds</button>
+        <button type="button" class="btn btn-primary" onclick="filterSelection('cereal')">Cereal</button>
+        <button type="button" class="btn btn-primary" onclick="filterSelection('rice&grains')">Rice & Grains</button>
+        <button type="button" class="btn btn-primary" onclick="filterSelection('snacks')">Snacks</button>
+        <button type="button" class="btn btn-primary" onclick="filterSelection('pick&mix')">Vegan Pick & Mix</button>
+      </div>
+
+      <!-- The filterable cards. each containing a specif item in the shop -->
+      <div class="row p-3" id=rowOfCards>
+
+
+      </div>
+    </div>
+  </main>
+  </div>
+  <!-- footer containing our names and our university -->
+  <footer class="container-fluid">
+    <div class="row">
+      <p class="col-8 my-auto">&copy; This webpage was created by: Ivan Amigo, Jamie Fergus, Duncan Goodare, Lewis Moore and Cameron Russell</p>
+      <p class="col-4 text-right my-auto">University of Dundee 2019</p>
+    </div>
+  </footer>
+
+
+  <!--import bootstrap JavaScript (needs to be moved to separtate JS file)-->
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+</body>
+
+
+<script>
+  function loadAll() {
+    createCards();
+    filterSelection('all');
+  }
+</script>
+<!-- javascript for creating cards (needs moved to separate file)-->
+<script>
+  // array holding filter names
+  var filter = [" pulses ", " pulses ", " pulses ", " pulses ", " pulses ", " pulses ", " pulses ", " pulses ", " pulses ",
+    " pasta ", " pasta ", " pasta ", " pasta ", " pasta ", " pasta ",
+    " baking ", " baking ", " baking ", " baking ", " baking ", " baking ", " baking ", " baking ", " baking ", " baking ", " baking ", " baking ", " baking ", " baking ", " baking ", " baking ", " baking ",
+    " tea ", " tea ", " tea ", " tea ",
+    " driedFruit ", " driedFruit ", " driedFruit ", " driedFruit ", " driedFruit ", " driedFruit ", " driedFruit ", " driedFruit ", " driedFruit ", " driedFruit ", " driedFruit ",
+    " nuts&seeds ", " nuts&seeds ", " nuts&seeds ", " nuts&seeds ", " nuts&seeds ", " nuts&seeds ", " nuts&seeds ", " nuts&seeds ", " nuts&seeds ", " nuts&seeds ", " nuts&seeds ", " nuts&seeds ", " nuts&seeds ",
+    " cereal ", " cereal ", " cereal ", " cereal ",
+    " rice&grains ", " rice&grains ", " rice&grains ", " rice&grains ", " rice&grains ", " rice&grains ", " rice&grains ", " rice&grains ", " rice&grains ", " rice&grains ", " rice&grains ",
+    " snacks ", " snacks ", " snacks ", " snacks ", " snacks ", " snacks ", " snacks ", " snacks ", " snacks ", " snacks ", " snacks ", " snacks ", " snacks ", " snacks ", " snacks ", " snacks ", " snacks ",
+    " pick&mix "
+  ];
+
+  // array holding item names
+  var items = ["Red kidney beans", "Butter beans", "Black turtle beans", "Pinto beans", "Chickpeas", "Marrowfat peas", "Yellow split pea", "Butter beans", "Green lentils Broth mix",
+    "Organic white pasta", "Non-organic pasta", "Organic whole wheat pasta", "Gluten free pasta", "Spaghetti", "Gluten free spaghetti",
+    "Baking powder", "Bicarbonate of soda", "White caster sugar", "Demerera sugar", "Organic coco powder", "Cocoa nibs", "Organic icing sugar", "Self raising flour", "Plain flour", "Rice flour", "Ground almonds", "Falafel mix", "Vegan sausage mix",
+    "Nut roast mix", "Nut roast mix", "TVP mince", "Broth mix",
+    "Peach garden tea", "Earl grey tea", "Sencha green tea", "Green tea with jasmine",
+    "Apple rings", "Dried apricots", "Dates", "Papaya", "Pinnaple", "Raisins", "Banana chips", "Berries", "Mixed peel", "Glace cherries", "Currants",
+    "Peanuts roasted salted", "Pistachios roasted salted", "Cashews broken", "Blanched almonds", "Walnuts broken", "Mixed nuts and raisins", "Pine kernels", "Tiger nuts", "Chia seeds", "Organic pumpkin seeds", "Organic sunflower seeds",
+    "Organic omega seed mix", "Linseed",
+    "Banana bran", "Exotic muesli", "Porridge oats", "Granola mix",
+    "Jasmine rice", "Long grain brown rice", "Long grain rice", "Organic long grain rice", "White Basmati rice", "Arborio Rice", "Organic Quinoa", "Organic tri colour quinoa", "Popping corn", "Pear cous cous", "White cous cous",
+    "Vegan white chocolate drops", "Moo free chocolate drops", "Choc honeycomb", "Dark choc raisins", "Milk choc raisins", "Yoghurt almonds", "White jazzies", "Chocolate jazzies", "Dark chocolate gingers", "Milk choc banana chips",
+    "Dark choc coffee beans", "Rum Balls", "Choc cookie fudge clusters", "Choc cookie fudge clusters", "Choc peanuts", "Milk choc brazils", "Dark choc brazils",
+    "various vegan sweets"
+  ];
+
+  // function that creates cards
+  function createCards() {
+    var i;
+    // for each card needed
+    for (i = 0; i < filter.length; i++) {
+      var div = document.createElement("div");
+      div.setAttribute('class', 'filter' + filter[i] + 'col-md-6 col-lg-4 col-xl-3');
+
+      var divCard = document.createElement("div");
+      divCard.setAttribute('class', 'card');
+      divCard.setAttribute('style', 'width: 17rem;');
+
+      var cardImg = document.createElement("img");
+      cardImg.src = "https://picsum.photos/200";
+      cardImg.setAttribute('class', 'card-img-top');
+
+      var divCardBody = document.createElement("div");
+      divCardBody.setAttribute('class', 'card-body');
+
+      var cardTitle = document.createElement("h5");
+      cardTitle.setAttribute('class', 'card-title');
+      cardTitle.textContent = items[i];
+
+
+      var cardText = document.createElement("p");
+      cardText.setAttribute('class', 'card-text');
+      cardText.textContent = 'cost of item';
+
+
+      document.getElementById('rowOfCards').appendChild(div);
+      div.appendChild(divCard);
+      divCard.appendChild(cardImg);
+      divCard.appendChild(divCardBody);
+      divCardBody.appendChild(cardTitle);
+      divCardBody.appendChild(cardText);
+
+    }
+  }
+</script>
+
+
+<!--JavaScript used to filter shop (needs to be moved to separtate JS file)-->
+<script>
+// show all cards
+filterSelection("all")
+function filterSelection(c) {
+  var x, i;
+  x = document.getElementsByClassName("filter");
+  if (c == "all") c = "";
+  for (i = 0; i < x.length; i++) {
+    w3RemoveClass(x[i], "show");
+    if (x[i].className.indexOf(c) > -1) w3AddClass(x[i], "show");
+  }
+}
+
+// Show filtered cards
+function w3AddClass(element, name) {
+  var i, arr1, arr2;
+  arr1 = element.className.split(" ");
+  arr2 = name.split(" ");
+  for (i = 0; i < arr2.length; i++) {
+    if (arr1.indexOf(arr2[i]) == -1) {element.className += " " + arr2[i];}
+  }
+}
+
+// Hide cards that are not selected
+function w3RemoveClass(element, name) {
+  var i, arr1, arr2;
+  arr1 = element.className.split(" ");
+  arr2 = name.split(" ");
+  for (i = 0; i < arr2.length; i++) {
+    while (arr1.indexOf(arr2[i]) > -1) {
+      arr1.splice(arr1.indexOf(arr2[i]), 1);
+    }
+  }
+  element.className = arr1.join(" ");
+}
+
+// Add active class to the current button (highlight it)
+var btnContainer = document.getElementById("btnContainer");
+var btns = btnContainer.getElementsByClassName("btn");
+for (var i = 0; i < btns.length; i++) {
+  btns[i].addEventListener("click", function(){
+    var current = document.getElementsByClassName("active");
+    current[0].className = current[0].className.replace(" active", "");
+    this.className += " active";
+  });
+}
+</script>
+
+</html>
